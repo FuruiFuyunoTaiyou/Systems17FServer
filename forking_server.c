@@ -12,10 +12,23 @@ static void sighandler(int signo) {
 }
 
 int main() {
+  signal(SIGINT, sighandler);
+
+  int from_client;
+  
+  from_client = server_setup();
+  
+  
+  
 }
 
 void subserver(int from_client) {
+  
 }
 
 void process(char * s) {
+  while(*s){
+    *s = toupper((unsigned char)*s);
+    s++;
+  }
 }
