@@ -28,10 +28,12 @@ int server_setup() {
   int parent;
   parent = fork();
   
-  //if (parent) {
+  if (parent) {
     remove("luigi");
     printf("[server] handshake: removed wkp\n");
-    //}
+  }else{
+    server_connect(from_client);
+  }
   
   return from_client;
 }
