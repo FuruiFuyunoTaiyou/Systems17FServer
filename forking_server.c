@@ -14,16 +14,33 @@ static void sighandler(int signo) {
 int main() {
   signal(SIGINT, sighandler);
 
+  int parent;
   int from_client;
+  char buffer[BUFFER_SIZE];
   
-  from_client = server_setup();
+  while(1){
+    //handshake
+    from_client = server_setup();
+    //should be after msg received
+    //perhaps connections made in server_setup(), then copied over
+    parent = fork();
+    if(parent){
+      
+    }else{
+      subserver(from_client);
+    }
+  }
   
-  
-  
+  return 0;
 }
 
 void subserver(int from_client) {
-  
+  char buffer[BUFFER_SIZE];
+  int to_client = server_connect(from_client);
+  while(read(from_client, buffer, sizeof(buffer))){
+    process(buffer);
+    write(to_client, buffer, sizeof(buffer));
+  }
 }
 
 void process(char * s) {
