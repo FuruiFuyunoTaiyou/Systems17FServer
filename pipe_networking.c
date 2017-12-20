@@ -28,10 +28,13 @@ int server_setup() {
   int parent;
   parent = fork();
   
-  //if (parent) {
+  if (parent) {
     remove("luigi");
     printf("[server] handshake: removed wkp\n");
-    //}
+	}
+	else {
+		server_connect(getpid()); //not sure if getpid is correct
+	}
   
   return from_client;
 }
@@ -46,12 +49,9 @@ int server_setup() {
   returns the file descriptor for the downstream pipe.
   =========================*/
 int server_connect(int from_client) {
-  //fork off a subserver
-  //int parent;
-  //parent = fork();
-
-  
-  
+	
+	
+	
   return -1;
 }
 
