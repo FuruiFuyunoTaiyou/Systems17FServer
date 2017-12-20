@@ -31,10 +31,9 @@ int server_setup() {
   if (parent) {
     remove("luigi");
     printf("[server] handshake: removed wkp\n");
-	}
-	else {
-		server_connect(getpid()); //not sure if getpid is correct
-	}
+  }else{
+    server_connect(from_client);
+  }
   
   return from_client;
 }
